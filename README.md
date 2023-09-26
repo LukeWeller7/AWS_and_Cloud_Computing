@@ -1,17 +1,18 @@
 # AWS and Cloud Computing
 
-### What is Cloud Computing? If you can find a diagram to explain it would be good.
+### What is Cloud Computing?
 
-- Cloud computing is a technology that enables users to access and use computer resources like storage, processing power, and applications over the internet. It eliminates the need for owning and maintaining physical hardware, offering convenience and scalability. Users can access these services from anywhere with an internet connection, making computing more accessible and efficient.
+- Cloud computing is a technology that enables users to access and use **computer resources** like storage, processing power, and applications **over the internet**. It eliminates the need for owning and maintaining physical hardware, offering convenience and scalability. Users can access these services from anywhere with an internet connection, making computing more accessible and efficient.
   
 ![](cloud_computing.png)
-
-https://images.spiceworks.com/wp-content/uploads/2021/07/09134159/38-3.png
+https://www.spiceworks.com/tech/cloud/articles/what-is-cloud-computing/
 
 ### Quick history/timeline of Cloud Computing.
 
 - Cloud computing, emerging in the early 2000s, revolutionized IT. Amazon Web Services (AWS) pioneered public cloud services in 2006, followed by Microsoft Azure and Google Cloud. This shift enabled businesses to store data and run applications remotely, boosting scalability and cost-efficiency. Cloud computing continues to evolve, shaping the digital landscape.
-
+- 60's timesharing, 70's application, 80's internet created where companies used timeshare online
+![](cloud-timeline-1960-2005.webp)  
+https://www.bcs.org/articles-opinion-and-research/history-of-the-cloud/
 ### What can you do with Cloud Computing?
 
 - Cloud computing enables users to access and utilize computer resources (like storage, processing power, and software) over the internet. It offers diverse applications, including data storage, scalable infrastructure, hosting websites and apps, running virtual machines, and facilitating artificial intelligence and data analysis, fostering efficiency, scalability, and cost-effectiveness for businesses and individuals.
@@ -47,17 +48,25 @@ https://images.spiceworks.com/wp-content/uploads/2021/07/09134159/38-3.png
 
 - **Operating Expenses** - Operating expenses are a company's day-to-day expenses
 - **Capital Expenditures** - Capital expenditures are a company's major, long-term expenses
-
+![](Capex-vs-Opex.webp)
+https://dokka.com/capex-vs-opex/
 ### Market-share - What is the breakdown?
 
 - Market share is calculated by taking the company's sales over the period and dividing it by the total sales of the industry over the same period.
 
 ![](Market-Share-Formula.png) 
-https://static.semrush.com/blog/uploads/media/4d/e2/4de2bc6674aa85e08e07a9c46986283e/Market-Share-Formula.png
+https://www.semrush.com/blog/how-to-calculate-market-share/
 ### What are the 3 largest Cloud providers know for (What makes them popular?)
 
 - Amazon Web Services (AWS)
 - Microsoft Azure,
 - Google Cloud Platform (GCP)
 
-### What are the 4 pillars of DevOps? How do they link into the Cloud do you think?
+### What are the 4 pillars of DevOps? 
+
+- Communication
+- Collaboration
+- Automation
+- Monitoring
+
+#### How do they link into the Cloud do you think?
