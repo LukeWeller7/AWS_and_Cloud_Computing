@@ -40,7 +40,7 @@
       - Type
         - HTTPS
       - Source Type
-        - Anywhere 
+        - Anywhere  
 ![](images/network_settings.png)
   - **Configure Storage**
     - **Default**
@@ -61,9 +61,9 @@
 - **Copy the Example, ensure that the user (ubuntu) is correct**
 ![](images/connect_to_instance_ssh_client.png)
 - **Run GitBash** (Run as admin)(Need to log onto each git bash you want to use instance)
-  - **cd .ssh**
-  - **chmod 400 tech254.pem** (Makes the file read only, can't open and write in it)
-  - **ssh -i "tech254.pem" ubuntu@ec2-54-216-138-227.eu-west-1.compute.amazonaws.com** (new ip each time you run after stopping)
+  - `cd .ssh` Entering your ssh file
+  - `chmod 400 tech254.pem` Makes the file read only, can't open and write in it, only need to do this once, if already done can skip
+  - `ssh -i "tech254.pem" ubuntu@ec2-54-216-138-227.eu-west-1.compute.amazonaws.com` (new ip each time you run after stopping)
     - ssh (use ssh)
     - -i (identity)
     - "tech254.pem" (ssh key pair)
@@ -74,17 +74,32 @@
 ![](images/command_line_connect_instance.png)
 
 ### Update virtual desktop
-- **sudo apt update** (finds all available updates but doesn't implement them)(confirms internet connection)
-- **sudo apt upgrade -y** (Take all the latest updates and implements the ones that need an update)
+- `sudo apt update` (finds all available updates but doesn't implement them)(confirms internet connection)
+- `sudo apt upgrade -y` (Take all the latest updates and implements the ones that need an update)
   - -y (confirmation (yes))
 
 ### Installing and Starting ngix
-- **sudo apt install nginx -y** - Installs nginx
-- **sudo systemctl start nginx** - Starts the nginx  
+- `sudo apt install nginx -y` - Installs nginx
+- `sudo systemctl start nginx` - Starts the nginx  
 ![](images/start_nginx.png) 
 - go back to AWS and find your ip address in your instance summary  
 ![](images/instance_summary_public_ip.png)
 - paste that into new url
   - Output:  
 ![](images/nginx_website.png)
+
+# Nginx
+Nginx, pronounced as "engine-x," is a powerful web server and reverse proxy server software. It serves as a bridge between users' web browsers and web applications, handling incoming requests and delivering web content efficiently.
+
+- **Web Server:** Nginx serves web content like HTML files and images to users when they visit a website. It handles multiple simultaneous requests, ensuring fast and reliable delivery.
+
+- **Reverse Proxy:** Nginx acts as an intermediary between users and web servers, distributing incoming requests to the appropriate backend servers. This improves load balancing and enhances security by hiding server details.
+
+- **High Performance:** Nginx is renowned for its efficiency and low resource usage. It can handle a large number of concurrent connections, making it a popular choice for serving websites with high traffic loads.
+
+# Webserver
+A web server is a specialized computer program or hardware device that plays a crucial role in how the internet functions. It's like the traffic cop of the internet, managing the flow of data between your computer and the websites you visit. Here are some key technical aspects:
+- **Request Handling:** Web servers receive requests from your web browser when you enter a website's URL. They process these requests and deliver the requested web pages or files to your browser.
+- **Hosting Websites:** Web servers store and serve website content, including text, images, videos, and more. Websites are essentially a collection of files hosted on a web server.
+- **IP Address and Port:** Web servers have unique IP addresses and use specific ports to communicate on the internet. When you type a URL (e.g., www.example.com) into your browser, it contacts the web server's IP address to fetch the website.
 
