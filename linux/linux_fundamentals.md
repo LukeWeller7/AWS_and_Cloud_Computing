@@ -9,41 +9,116 @@
 - Everything in Linux is either a file or folder
 - In Linux, it is case-sensitive 
 ## Key Commands
-- `uname` - OS in use (Linux)
-- `uname -a` - More information
-- `uname -p` - Processor information
-- `whoami` - The name of the user (ubuntu)
-- `cat /etc/shells`
-- `history` - Stores the last 500 cmds that were used
-  - `history -c` - clears the history (incase any passwords of confidential info is present)
-- `curl https://cdn.britannica.com/39/7139-050-A88818BB/Himalayan-chocolate-point.jpg --output cat.jpg`
-  - `curl` - Transfer data, goes to end point stated and copies it
-  - `url`
-  - `--output` - Specifying that we want the curl to create an output
-  - `cat.jpg` - Name of the file you want to output the curl
-- `mv` - Moves files and folder
-  - `mv cat.jpg cat`
-- `file cat` - Shows the file type of the cat file (.jpg) goes on the content not the name of the file
-  - `file cat.txt` - Still would be a jpg file
-- `clear` clears out terminal
-- `cp cat cat.jpg` - copies the first argument and outputs the second argument in folder
-- `rm cat` - removes the first argument from the folder (**no confirmation, be careful**)
-- `rm -r` - remove directory named after each argument
-- `mkdir` - Makes directory named after each argument (spaces separate different names)
-- `touch chicken-joke.txt` - Creates a blank file named after first argument
-- `nano chicken-joke.txt` - Brings up a text file to edit chicken-joke.txt
-- `head -2 chicken-joke.txt` - bring back the top number of lines (top 2 lines)
-- `tail -2 chicken-joke.txt` - bring back the bottom number of lines (bottom 2 lines)
-  - Can extract the most recent information from the file
-  - Error files, use tails to take out the bottom x amount of lines as they can be 1000's long.
-- `nl chicken-joke.txt` - Shows content as well as number the lines (doesn't include blank space)
-- `|` - Pipe, chains commands together.
-  - `cat chicken-joke.txt | grep chicken` - Prints out any lines in txt file that contain the argument after grep and highlights.
-- `sudo` - Super user do - more permissions for that one command
-  - `sudo apt install tree` - only works with sudo
-- `apt` - 
-- `tree` - gives working file order of directory
-- `cd /` - changes to the root directory
-- `sudo su` - Long term super user do
-  - `exit` - exit sudo su
-- `exit` - exit out of instance connection
+### Basic Information
+```
+uname
+```
+This command is used to show the operating system that is in use.
+```
+uname -a
+```
+This command is used to show all information on the Operating system.
+```
+uname -p
+```
+This command is used to show information on the processor that is in use.
+```
+whoami
+```
+This command shows you the name of the user (Typically Ubuntu)
+```
+history
+```
+This command shows the history of the last 500 commands used on this system
+```
+history -c
+```
+Use this command to clear the history of commands use, main use of this is to remove any commands that contain passwords or sensitive information
+### File commands
+```
+curl
+```
+This command is used to copy and transfer data from a given source. An example of this is shown below:
+```
+curl https://cdn.britannica.com/39/7139-050-A88818BB/Himalayan-chocolate-point.jpg --output cat.jpg
+```
+This example command consists with the first argument being the url/source of the data you want to copy, followed by the action which will be output, meaning you want to output what was just copied into the final argument being the location of the data tansfer.
+```
+mv
+```
+This command moves files. An example is given:
+```
+mv cat.jpg cat
+```
+What this command has done is move the file noted as the first argument and moved it into a file called after the second argument
+```
+file
+```
+This command outputs the type of file that is contained within the contents, even if the file is named differently.
+```
+cp
+```
+This command copies, taking the first argument, coping the contents and outputting a new file named after the second argument
+```
+rm 
+```
+This command removes the file named in the first argument (be careful as it doesn't ask for confirmation)
+```
+touch
+```
+This command creates a blank file named after first argument
+```
+nano
+```
+This command allows you to change the contents of a file
+```
+head -2 chicken-joke.txt
+```
+This command takes the top number of lines stated in argument one out of the file stated in argument two
+```
+tail -2 chicken-joke.txt
+```
+This command takes the bottom number of lines stated in argument one out of the file stated in argument two. This is useful for extracting the most recent data in a file as well as extracting last few lines of error codes instead of the while file.
+```
+nl
+```
+This command shows the contents of the file stated in argument one, as well as the number of lines (excluding blank space)
+```
+cat chickem-joke.txt | grep chicken
+```
+This command prints out any lines in txt file that contain the argument after grep and highlights. The pipe `|` allows you to chain commands together.
+### Directory Commands
+```
+rm -r
+```
+This commands removes the directory named in each following argument
+```
+mkdir
+```
+This command makes directories names after the following arguments (spaces separate directories)
+```
+tree
+```
+This command needs to be installed via `sudo apt install tree` but it gives a working file order of current directory
+```
+cd /
+```
+This commands changes you to the root directory
+### Terminal commands
+```
+clear
+```
+This command clears out the directory
+```
+sudo
+```
+This command stands for Super user do, meaning you can have extra permissions (be careful)
+```
+sudo su
+```
+This command turns on sudo for foreseeable future until you use `exit`
+```
+exit
+```
+This command allows you to exit sudo, but also will exit you out of instance connection if not in sudo.
+
