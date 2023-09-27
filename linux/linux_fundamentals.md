@@ -1,0 +1,49 @@
+# Basics on Linux
+
+### Key Information
+- bash 
+  - born again shell 
+  - determined with prefix $
+  - a shell is an interface that allows you to run commands 
+  - bash is known as the default shell
+- Everything in Linux is either a file or folder
+- In Linux, it is case-sensitive 
+## Key Commands
+- `uname` - OS in use (Linux)
+- `uname -a` - More information
+- `uname -p` - Processor information
+- `whoami` - The name of the user (ubuntu)
+- `cat /etc/shells`
+- `history` - Stores the last 500 cmds that were used
+  - `history -c` - clears the history (incase any passwords of confidential info is present)
+- `curl https://cdn.britannica.com/39/7139-050-A88818BB/Himalayan-chocolate-point.jpg --output cat.jpg`
+  - `curl` - Transfer data, goes to end point stated and copies it
+  - `url`
+  - `--output` - Specifying that we want the curl to create an output
+  - `cat.jpg` - Name of the file you want to output the curl
+- `mv` - Moves files and folder
+  - `mv cat.jpg cat`
+- `file cat` - Shows the file type of the cat file (.jpg) goes on the content not the name of the file
+  - `file cat.txt` - Still would be a jpg file
+- `clear` clears out terminal
+- `cp cat cat.jpg` - copies the first argument and outputs the second argument in folder
+- `rm cat` - removes the first argument from the folder (**no confirmation, be careful**)
+- `rm -r` - remove directory named after each argument
+- `mkdir` - Makes directory named after each argument (spaces separate different names)
+- `touch chicken-joke.txt` - Creates a blank file named after first argument
+- `nano chicken-joke.txt` - Brings up a text file to edit chicken-joke.txt
+- `head -2 chicken-joke.txt` - bring back the top number of lines (top 2 lines)
+- `tail -2 chicken-joke.txt` - bring back the bottom number of lines (bottom 2 lines)
+  - Can extract the most recent information from the file
+  - Error files, use tails to take out the bottom x amount of lines as they can be 1000's long.
+- `nl chicken-joke.txt` - Shows content as well as number the lines (doesn't include blank space)
+- `|` - Pipe, chains commands together.
+  - `cat chicken-joke.txt | grep chicken` - Prints out any lines in txt file that contain the argument after grep and highlights.
+- `sudo` - Super user do - more permissions for that one command
+  - `sudo apt install tree` - only works with sudo
+- `apt` - 
+- `tree` - gives working file order of directory
+- `cd /` - changes to the root directory
+- `sudo su` - Long term super user do
+  - `exit` - exit sudo su
+- `exit` - exit out of instance connection
