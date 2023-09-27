@@ -1,4 +1,4 @@
-# AWS and Cloud Computing
+# Cloud Computing
 
 ### What is Cloud Computing?
 
