@@ -67,19 +67,6 @@ For the instance, what you'd want to do is to go through each section and fill i
     - Check your summary to ensure you have all the correct details  
 ![](images/summary.png)
   - **Launch instance**
-
-### Loading App data to Instance
-Before we load up the instance, we want to transfer the data over inside the git bash terminal. 
-```
-scp -i "<filepath to .pem file>" -r <filepath to your local app folder> Ubuntu@<public IP>:<remote filepath>
-```
-This command allows us to copy over the app folder into the instance
-- `scp` stands for secure copy, this is the action of the command
-- `-i` means identify, for this you will need your .pem file
-- `"<filepath to .pem file>"` Enter your file path to where you have you .pem file
-- `-r` 
-- `"<file path to your local app folder>"` Enter the file path to the app folder.
-- `Ubuntu@<public IP>:<remote filepath>` This is found when you run your instance
 ### Running Instance
 - **Instance Summary** - Once your instance has launched you can view its summary view clicking on the Instance ID (i-06a83a8d684ce7e37)
 ![](images/instance_summary.png)
@@ -87,58 +74,121 @@ This command allows us to copy over the app folder into the instance
 - **SSH client**
 - **Copy the Example, ensure that the user (ubuntu) is correct**
 ![](images/connect_to_instance_ssh_client.png)
-- **Run GitBash** (Run as admin)(Need to log onto each git bash you want to use instance)
+
+### Running Git Bash
+For this stage you need to run git bash as an administrator so that you can access your instance
+- **Run GitBash** (Need to log onto each git bash you want to use instance)
+- Make your .pem file read only for you.
+  - The reason you do this is to make sure no one other than you has access to your .pem file
   - `cd .ssh` Entering your ssh file
-  - `chmod 400 tech254.pem` Makes the file read only, can't open and write in it, only need to do this once, if already done can skip
-  - Now you have found your .pem file and instance ip, run the SCP command.
-  - `ssh -i "tech254.pem" ubuntu@ec2-54-216-138-227.eu-west-1.compute.amazonaws.com` (new ip each time you run after stopping)
-    - ssh (use ssh)
-    - -i (identity)
-    - "tech254.pem" (ssh key pair)
-    - ubuntu@ec2-54-216-138-227.eu-west-1.compute.amazonaws.com (where we want to go, ubuntu refers to the user your logging in as)
-    - output:
-      ![](images/fingerprint.png)
-    - Type yes to confirm
+  - `chmod 400 tech254.pem` Makes the file read only, can't write in it, only need to do this once, if already done can skip
+
+You want to copy across your app folder to your instance, this an either be done via the scp method or the git clone. For SCP follow these step, but for Git clone, skip this next step and go to **Update Virtual Desktop**
+
+### SCP Method
+- Copying over the app folder using scp (secure copy). You will need the file paths to both your .pem file and to your app folder. For the Ubuntu paste in the lin that you copied from running the instance.
+```
+scp -i "<filepath to .pem file>" -r <filepath to your local app folder> Ubuntu@<public IP>:<remote filepath>
+```
+- From the run instance, run the full ssh command.
+```
+ssh -i "tech254.pem" ubuntu@ec2-54-216-138-227.eu-west-1.compute.amazonaws.com
+```
+- Key notes:
+  - (new ip each time you run after stopping)
+  - ssh (use ssh)
+  - -i (identity)
+  - "tech254.pem" (ssh key pair)
+  - ubuntu@ec2-54-216-138-227.eu-west-1.compute.amazonaws.com (where we want to go, ubuntu refers to the user your logging in as)
+- output:
+![](images/fingerprint.png)
+- Type yes to confirm
 ![](images/command_line_connect_instance.png)
 
 ### Update virtual desktop
-- `sudo apt update` (finds all available updates but doesn't implement them)(confirms internet connection)
-- `sudo apt upgrade -y` (Take all the latest updates and implements the ones that need an update)
-  - -y (confirmation (yes))
+- Update to finds all available updates but doesn't implement them, this will also confirms internet connection.
+```
+sudo apt update
+``` 
+- Upgrade takes all the latest updates and implements the ones that need an update, `-y` to confirm
+```
+sudo apt upgrade -y
+```
 
 ### Installing and Starting ngix
-- `sudo apt install nginx -y` - Installs nginx
-- `sudo systemctl restart nginx` - Starts the nginx  
-- `sudo systemctl status nginx` - Checks the status to see if it's running
+- Installs nginx
+``` 
+sudo apt install nginx -y
+```
+- Starts the nginx  
+```
+sudo systemctl restart nginx
+``` 
+- Enable nginx
+```
+sudo systemctl enable nginx
+```
+- Checks the status to see if it's running
+```
+sudo systemctl status nginx
+``` 
 ![](images/start_nginx.png) 
 
+### Git clone method
+If you have completed the SCP method, skip this section and go to **Installing Nodejs**
+
+- Create a GitHub repository containing the app folder. In your local system, create a local repo and push it to GitHub
+```
+git init
+git add .
+git commit -m "App folder"
+git remote add origin [SSH connection to GitHub]
+git push -u origin main
+```
+- On GitHub check that the folder has been push correctly and save the url link to it.
+- Back into the terminal on your virtual desktop, install git
+```
+sudo apt install git -y
+```
+- Copy over the folder from GitHub using the url you saved.
+```
+git clone https://github.com/LukeWeller7/testing_scp_gitclone.git
+```
+
 ### Installing Nodejs
-- Start by entering the apps folding using `cd`
+- Curl, this command finds the specific version of nodejs, otherwise when you still it, it will try and install the latest version
 ```
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 ```
-This command finds the pacific version of nodejs, otherwise when you still it, it will try and install the lastest version
+- Install nodejs
 ```
 sudo apt install nodejs -y
 ```
-This command installs nodejs
+- Check the version you are on
 ```
 node -v
 ```
-This command shows the version of node being used.
+- Install pm2 via nodejs
 ```
 sudo npm install pm2 -g
 ```
-- npm - node packet manager (nodes version of pip)  
-- pm2 - process manager, manager for node processes, easier to manage the processors used by nodejs  
-- https://www.vultr.com/docs/how-to-manage-node-applications-with-pm2/
+- keynotes:
+  - npm - node packet manager (nodes version of pip)  
+  - pm2 - process manager, manager for node processes, easier to manage the processors used by nodejs  
+  - https://www.vultr.com/docs/how-to-manage-node-applications-with-pm2/
 
 # Running the app
+- Enter the app folder with `cd`, check with `ls` that the folder content is there.
+```
+cd testing_scp_gitclone
 
+cd app
+```
+- Install npm
 ```
 npm install 
 ```
-
+- Run the app
 ```
 node app.js
 ```
