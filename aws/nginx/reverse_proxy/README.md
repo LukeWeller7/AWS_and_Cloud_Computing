@@ -1,4 +1,4 @@
-### What are ports? (research)
+### What are ports?
 
 - A port in networking is a software-defined number associated to a network protocol that receives or transmits communication for a specific service
 
@@ -12,7 +12,7 @@
 
 ### Make a diagram for the above point to go with your explanation
 
-
+![](images/proxy_reverse_proxy.png)
 
 ### What is Nginx's default configuration (hint - 'sites-available' directory)
 
