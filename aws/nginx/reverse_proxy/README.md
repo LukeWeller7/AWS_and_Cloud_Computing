@@ -18,73 +18,29 @@
 
 - /etc/nginx/nginx.conf
 
-### How do you set up a Nginx reverse proxy?
-
-1. Install Nginx  
-- We’ll be using the apt command on Ubuntu 18.04:
-
+## How to set up reverse proxy:
+- For this you run an instance for your app, use the AMI created for the app.
+- Log into your instance on Git bash
 ```
-sudo apt-get update
+sudo nano /etc/nginx/sites-available/default
 ```
+- This command allows you to access information on connecting to nginx.
+- Inside the file, you need to change/ add two things
+  - First replace the _ after server_name with the public IP address of the app
+  - Secondly set up the proxy with the following:
+    - ```
+      proxy_pass http://localhost:3000;
+      proxy_buffering off;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-Host $host;
+      proxy_set_header X-Forwarded-Port $server_port;
+      ```
+
+![](images/location.png)  
+- Save and Exit
 ```
-sudo apt-get install nginx
+sudo systemctl restart nginx
 ```
-2. Disable the Default Virtual Host
-- Once you have installed Nginx, follow the below command to disable the virtual host:
-```
-sudo unlink /etc/nginx/sites-enabled/default
-```
-
-3. Create the Nginx Reverse Proxy
-- After disabling the virtual host, we need to create a file called **reverse-proxy.conf** within the **etc/nginx/sites-available** directory to keep reverse proxy information.
-
-- For this, we should first access the directory using the cd command:
-
-```
-cd etc/nginx/sites-available/
-```
-
-- Then we can create the file using the vi editor:
-
-```
-vi reverse-proxy.conf
-```
-
-- In the file, we need to paste in these strings:
-
-```
-server {
-    listen 80;
-    location / {
-        proxy_pass http://192.x.x.2;
-    }
-}
-```
-
-- In the above command, the considerable point is the proxy pass is allowing the requests coming through the Nginx reverse proxy to pass along to 192.x.x.2:80, which is Apache remote socket. Thus, both the web servers – Nginx and Apache, shares the content.
-
-- Once completed, simply save the file and exit the vi editor. You can do this by keying in :wq.
-
-- To pass information to other servers, you can use the ngx_http_proxy_module in the terminal.
-
-- Now, activate the directives by linking to /sites-enabled/ using the following command:
-
-```
-sudo ln -s /etc/nginx/sites-available/reverse-proxy.conf /etc/nginx/sites-enabled/reverse-proxy.conf
-```
-
-4. Test Nginx and the Nginx Reverse Proxy
-- Lastly, we need to run an Nginx configuration test and restart Nginx to check its performance. Type the below command to verify the Nginx functioning on the Linux terminal:
-
-```
-service nginx configtest
-```
-
-```
-service nginx restart
-```
-- Remember, if you receive a failed test, that most likely indicates that Apache was not properly set up.
-
-https://www.hostinger.co.uk/tutorials/how-to-set-up-nginx-reverse-proxy/
-
-###### Bonus: Try and implement a reverse proxy for the app on EC2
+- Restart nginx so that the proxy is set up properly. (If not done, frontend errors can occur)
+- Run the app through the app file.
+- Test out on webpage by only entering the public IP of app without port 3000.
